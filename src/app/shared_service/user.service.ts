@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {HttpResponse, HttpHeaders,HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpHeaders,} from '@angular/common/http';
+import {HttpResponse,HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs'
-import { map, filter, switchMap,catchError } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 
-import 'rxjs/Rx';
 import {User} from '../user'
 
 @Injectable({
@@ -14,7 +13,6 @@ export class UserService {
   
  
   private baseUrl:string ='http://localhost:8080/api';
-  //private headers = new HttpHeaders({'Content-Type': 'application/json'});
   private httOptions = { headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'pass'
