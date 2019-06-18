@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders,} from '@angular/common/http';
-import {HttpResponse,HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs'
+//import {HttpResponse,HttpRequest} from '@angular/common/http';
+import { Observable } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 
 import {User} from '../user'
@@ -12,16 +12,17 @@ import {User} from '../user'
 export class UserService {
   
  
-  private baseUrl:string ='http://localhost:8080/api';
+  private baseUrl:string ='http://localhost:8080/api/users';
   private httOptions = { headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'pass'
   })};
   constructor(private http:HttpClient) { }
 
-  getUsers(){
+  getUsers():Observable<any>{
 
-    return this.http.get(this.baseUrl+'/users',this.httOptions).pipe(map((response:Response)=>response.json()),catchError(this.errorHandler));
+   // return this.http.get(this.baseUrl+'/users').pipe(map((response:Response)=>response.json()),catchError(this.errorHandler));
+   return this.http.get(`${this.baseUrl}`);
   }
   getUser(id:Number){
 
