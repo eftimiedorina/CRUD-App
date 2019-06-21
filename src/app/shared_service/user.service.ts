@@ -12,36 +12,39 @@ import {User} from '../user'
 export class UserService {
   
  
-  private baseUrl:string ='http://localhost:8080/api/users';
-  private httOptions = { headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'pass'
-  })};
+  private baseUrl:string ='http://localhost:8080/api';
+ 
+  
   constructor(private http:HttpClient) { }
 
   getUsers():Observable<any>{
 
-   // return this.http.get(this.baseUrl+'/users').pipe(map((response:Response)=>response.json()),catchError(this.errorHandler));
-   return this.http.get(`${this.baseUrl}`);
+   
+   return this.http.get(`${this.baseUrl}`+`/users`);
   }
-  getUser(id:Number){
+  getUser(id:Number):Observable<Object>{
 
-    return this.http.get(this.baseUrl+'/user'+id,this.httOptions).pipe(map((response:Response)=>response.json()),catchError(this.errorHandler));
+    return this.http.get(`${this.baseUrl}/user/${id}`);
+
+    
   }
 
   deleteUser(id:Number){
-
-    return this.http.delete(this.baseUrl+'/user'+id,this.httOptions).pipe(map((response:Response)=>response.json()),catchError(this.errorHandler));
+      
+    return this.http.delete(`${this.baseUrl}/user/${id}`);
+   
   }
 
   createUsers(user:User){
 
-    return this.http.post(this.baseUrl+'/users',JSON.stringify(user),this.httOptions).pipe(map((response:Response)=>response.json()),catchError(this.errorHandler));
+     return this.http.post(`${this.baseUrl}/${user}`,user);
+    
   }
 
-  updateUsers(user:User){
+  updateUsers(id: number,user:User):Observable<Object>{
+    return this.http.put(`${this.baseUrl}/${id}`,user);
 
-    return this.http.put(this.baseUrl+'/users',JSON.stringify(user),this.httOptions).pipe(map((response:Response)=>response.json()),catchError(this.errorHandler));
+    
   }
 
   errorHandler(error:Response){

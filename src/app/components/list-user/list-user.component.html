@@ -12,12 +12,12 @@
       <td>{{user.id}}</td>
       <td>{{user.userName}}</td>
       <td>{{user.userPassword}}</td>
-      <td><button class="btn btn-danger">Delete</button>
-        <button class="btn btn-primary">Edit</button></td>>
+      <td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+        <button class="btn btn-primary" (click)="updateUser(user)">Update User</button></td>>
     </tr>
   </tbody>
 </table>
 
-<button class="btn btn-primary">New user</button>
+<button class="btn btn-primary" (click)="newUser()" routerLink="op">New user</button>
 
 </div>>
