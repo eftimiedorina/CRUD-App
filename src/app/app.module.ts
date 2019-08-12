@@ -12,7 +12,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import {FormsModule} from '@angular/forms'
 
 const appRoutes:Routes=[
-   {path:'', component:ListUserComponent},
+   { // default route
+     path:'', component:ListUserComponent},
    {path:'op', component:UserFormComponent},
 ]
 

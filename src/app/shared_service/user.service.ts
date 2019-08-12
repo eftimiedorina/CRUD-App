@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders,} from '@angular/common/http';
-//import {HttpResponse,HttpRequest} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+
 import { Observable } from 'rxjs'
-import { map, catchError } from 'rxjs/operators'
+
 
 import {User} from '../user'
 
 @Injectable({
   providedIn: 'root'
 })
+
+// to consume my API
 export class UserService {
   
  
   private baseUrl:string ='http://localhost:8080/api';
- 
-  
+  private user:User;
   constructor(private http:HttpClient) { }
 
   getUsers():Observable<any>{
@@ -26,7 +27,6 @@ export class UserService {
 
     return this.http.get(`${this.baseUrl}/user/${id}`);
 
-    
   }
 
   deleteUser(id:Number){
@@ -35,21 +35,29 @@ export class UserService {
    
   }
 
-  createUsers(user:User){
+  createUser(user:User){
 
      return this.http.post(`${this.baseUrl}/${user}`,user);
     
   }
 
-  updateUsers(id: number,user:User):Observable<Object>{
+  updateUser(id: number,user:User):Observable<Object>{
     return this.http.put(`${this.baseUrl}/${id}`,user);
 
     
   }
 
-  errorHandler(error:Response){
-    return Observable.throw(error || "server error");
+  setter(user:User){
+    this.user = user;
   }
+
+  getter(){
+    return this.user;
+  }
+
+  // errorHandler(error:Response){
+  //   return Observable.throw(error || "server error");
+  // }
 
   
 }

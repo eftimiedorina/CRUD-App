@@ -14,29 +14,29 @@ export class UserFormComponent implements OnInit {
   constructor(private userService:UserService,private _router:Router) { }
 
   ngOnInit() {
-    //this.user = new User();
+    this.user = this.userService.getter();
   }
-  newUser(){
+  // newUser(){
 
-    let user = new User();
-     this.userService.createUsers(user).subscribe(data => console.log(data), error => console.log(error));;
-     this._router.navigate(['/op']);
+  //   let user = new User();
+  //    this.userService.createUsers(user).subscribe(data => console.log(data), error => console.log(error));;
+  //    this._router.navigate(['/op']);
      
-   }
+  //  }
 
   onSubmit(){
     if(this.user.id==undefined){
-      this.userService.createUsers(this.user).subscribe((user)=>{
+      this.userService.createUser(this.user).subscribe((user)=>{
       console.log(user);
       this._router.navigate(['/']);
       },(error)=> console.log(error)
       );
-    }else{
-      // this.userService.updateUsers(this.user.id,this.user).subscribe((user)=>{
-      //   console.log(user);
-      //   this._router.navigate(['/']);
-      //   },(error)=> console.log(error)
-
+    // } else{
+    //   this.userService.updateUsers(this.user).subscribe((user)=>{
+    //     console.log(user);
+    //     this._router.navigate(['/']);
+    //     },(error)=> console.log(error)
+    //     );
     }
   }
 
